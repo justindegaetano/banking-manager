@@ -200,6 +200,7 @@ export const authFormSchema = (type: string) => z.object({
   password: z.string().min(8).describe('Password must be at least 8 characters long'),
   firstName: type === 'sign-in' ? z.string().optional() : z.string().min(3),
   lastName: type === 'sign-in' ? z.string().optional() : z.string().min(3),
+  city: type === 'sign-in' ? z.string().optional() : z.string().max(50),
   address1: type === 'sign-in' ? z.string().optional() : z.string().max(50),
   state: type === 'sign-in' ? z.string().optional() : z.string().min(2).max(2),
   zipCode: type === 'sign-in' ? z.string().optional() : z.string().min(3).max(6),

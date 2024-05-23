@@ -4,12 +4,12 @@ import type { Metadata } from "next";
 import { Inter, IBM_Plex_Serif } from "next/font/google";
 import Image from "next/image";
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const loggedIn = { firstName: 'Justin', lastName: 'DeGaetano' };
+  const loggedIn = await { firstName: 'Justin', lastName: 'DeGaetano' };
 
   return (
     <main className="flex h-screen w-full font-inter">

@@ -2,7 +2,7 @@ import HeaderBox from "@/components/HeaderBox";
 import RightSidebar from "@/components/ui/RightSidebar";
 import TotalBalanceBox from "@/components/ui/TotalBalanceBox";
 
-const Home = () => {
+const Home = async () => {
   const loggedIn = { firstName: 'Justin', lastName: 'DeGaetano', email: 'justin@email.com' };
 
   return (
@@ -12,7 +12,7 @@ const Home = () => {
           <HeaderBox 
             type='greeting'
             title='Welcome'
-            user={loggedIn?.firstName || 'guest'}
+            user={loggedIn?.firstName || 'Guest'}
             subtext='Access and manage your accounts and transactions efficiently.'
           />
 
