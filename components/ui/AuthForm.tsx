@@ -54,8 +54,8 @@ const AuthForm = ({ type }: {type: string }) => {
           address1: data.address1!,
           city: data.city!,
           state: data.state!,
-          zipCode: data.zipCode!,
-          dob: data.dob!,
+          postalCode: data.postalCode!,
+          dateOfBirth: data.dob!,
           ssn: data.ssn!,
           email: data.email,
           password: data.password,
@@ -160,7 +160,7 @@ const AuthForm = ({ type }: {type: string }) => {
                     />
                     <CustomInput
                       control={form.control}
-                      name='zipCode'
+                      name='postalCode'
                       label='Zip Code'
                       placeholder='Example: 01604'
                     />
