@@ -45,7 +45,7 @@ Built with Next.js 14, MoneyMaven is a financial SaaS platform that connects to 
 
 To access the application, either:
 
-* <a href='https://banking-manager.vercel.app/sign-in'>Sign in</a> using a pre-generated test account linked with replica bank account details and activity using
+* <a href='https://money-maven.vercel.app/sign-in'>Sign in</a> using a pre-generated test account linked with replica bank account details and activity using
 
 ```bash
 test@email.com
@@ -54,7 +54,7 @@ test@email.com
 12121212
 ```
 
-... or <a href='https://banking-manager.vercel.app/sign-up'>sign up</a> and, when prompted to provide credentials once attempting to connect a bank, use the Dwolla sandbox credentials of:
+... or <a href='https://money-maven.vercel.app/sign-up'>sign up</a> and, when prompted to provide credentials once attempting to connect a bank, use the Dwolla sandbox credentials of:
 
 ```bash
 user_good
