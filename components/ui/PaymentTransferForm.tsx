@@ -34,6 +34,12 @@ const formSchema = z.object({
   sharableId: z.string().min(8, "Please select a valid sharable Id"),
 });
 
+/**
+ * Payment transfer form component.
+ * @param {Object} props - The properties object.
+ * @param {Array<Object>} props.accounts - The user's bank accounts.
+ * @returns {JSX.Element} The payment transfer form component.
+ */
 const PaymentTransferForm = ({ accounts }: PaymentTransferFormProps) => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);

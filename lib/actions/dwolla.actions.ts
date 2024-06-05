@@ -2,6 +2,10 @@
 
 import { Client } from "dwolla-v2";
 
+/**
+ * Retrieves the environment for the Dwolla client.
+ * @returns {"production" | "sandbox"} The environment of the Dwolla client.
+ */
 const getEnvironment = (): "production" | "sandbox" => {
   const environment = process.env.DWOLLA_ENV as string;
 
@@ -23,7 +27,15 @@ const dwollaClient = new Client({
   secret: process.env.DWOLLA_SECRET as string,
 });
 
-// Create a Dwolla Funding Source using a Plaid Processor Token
+/**
+ * Creates a funding source for a Dwolla customer using Plaid Processor Token.
+ * @async
+ * @param {CreateFundingSourceOptions} options - The options for creating a funding source.
+ * @param {string} options.customerId - The ID of the customer.
+ * @param {string} options.fundingSourceName - The name of the funding source.
+ * @param {string} options.plaidToken - The Plaid processor token.
+ * @returns {Promise<string>} The location of the created funding source.
+ */
 export const createFundingSource = async (
   options: CreateFundingSourceOptions
 ) => {
@@ -39,6 +51,11 @@ export const createFundingSource = async (
   }
 };
 
+/**
+ * Creates an On-Demand Authorization.
+ * @async
+ * @returns {Promise<Object>} The On-Demand Authorization link.
+ */
 export const createOnDemandAuthorization = async () => {
   try {
     const onDemandAuthorization = await dwollaClient.post(
@@ -51,6 +68,12 @@ export const createOnDemandAuthorization = async () => {
   }
 };
 
+/**
+ * Creates a Dwolla customer.
+ * @async
+ * @param {NewDwollaCustomerParams} newCustomer - The parameters for creating a new Dwolla customer.
+ * @returns {Promise<string>} The location of the created Dwolla customer.
+ */
 export const createDwollaCustomer = async (
   newCustomer: NewDwollaCustomerParams
 ) => {
@@ -63,6 +86,15 @@ export const createDwollaCustomer = async (
   }
 };
 
+/**
+ * Creates a transfer between funding sources.
+ * @async
+ * @param {TransferParams} params - The parameters for creating the transfer.
+ * @param {string} params.sourceFundingSourceUrl - The URL of the source funding source.
+ * @param {string} params.destinationFundingSourceUrl - The URL of the destination funding source.
+ * @param {number} params.amount - The amount to transfer.
+ * @returns {Promise<string>} The location of the created transfer.
+ */
 export const createTransfer = async ({
   sourceFundingSourceUrl,
   destinationFundingSourceUrl,
@@ -91,6 +123,15 @@ export const createTransfer = async ({
   }
 };
 
+/**
+ * Adds a funding source to a Dwolla customer.
+ * @async
+ * @param {AddFundingSourceParams} params - The parameters for adding a funding source.
+ * @param {string} params.dwollaCustomerId - The ID of the Dwolla customer.
+ * @param {string} params.processorToken - The processor token.
+ * @param {string} params.bankName - The name of the bank.
+ * @returns {Promise<string>} The URL of the added funding source.
+ */
 export const addFundingSource = async ({
   dwollaCustomerId,
   processorToken,

@@ -15,6 +15,13 @@ const {
   APPWRITE_BANK_COLLECTION_ID: BANK_COLLECTION_ID,
 } = process.env;
 
+/**
+ * Retrieves user information from the database.
+ * @async
+ * @param {Object} getUserInfoProps - The properties object.
+ * @param {string} getUserInfoProps.userId - The ID of the user to retrieve.
+ * @returns {Promise<Object>} The user information.
+ */
 export const getUserInfo = async ({ userId }: getUserInfoProps) => {
   try {
     const { database } = await createAdminClient();
@@ -31,6 +38,14 @@ export const getUserInfo = async ({ userId }: getUserInfoProps) => {
   }
 };
 
+/**
+ * Signs in a user using email and password.
+ * @async
+ * @param {Object} signInProps - The properties object.
+ * @param {string} signInProps.email - The email of the user.
+ * @param {string} signInProps.password - The password of the user.
+ * @returns {Promise<Object>} The user information.
+ */
 export const signIn = async ({ email, password }: signInProps) => {
   try {
     const { account } = await createAdminClient();
@@ -52,6 +67,14 @@ export const signIn = async ({ email, password }: signInProps) => {
   }
 }
 
+/**
+ * Signs up a new user.
+ * @async
+ * @param {Object} SignUpParams - The properties object.
+ * @param {string} SignUpParams.password - The password for the new user.
+ * @param {Object} userData - Additional user data.
+ * @returns {Promise<Object>} The new user information.
+ */
 export const signUp = async ({password, ...userData}: SignUpParams) => {
   const { email, firstName, lastName } = userData;
 
@@ -106,6 +129,11 @@ export const signUp = async ({password, ...userData}: SignUpParams) => {
   }
 }
 
+/**
+ * Retrieves information of the logged-in user.
+ * @async
+ * @returns {Promise<Object|null>} The logged-in user information or null if an error occurs.
+ */
 export async function getLoggedInUser() {
   try {
     const { account } = await createSessionClient();
@@ -120,6 +148,11 @@ export async function getLoggedInUser() {
   }
 }
 
+/**
+ * Logs out the current user.
+ * @async
+ * @returns {Promise<null>} Always returns null.
+ */
 export const logoutAccount = async () => {
   try {
     const { account } = await createSessionClient();
@@ -132,6 +165,12 @@ export const logoutAccount = async () => {
   }
 }
 
+/**
+ * Creates a Plaid link token for the user.
+ * @async
+ * @param {Object} user - The user object.
+ * @returns {Promise<Object>} The link token.
+ */
 export const createLinkToken = async (user: User) => {
   try {
     const tokenParams = {
@@ -152,6 +191,18 @@ export const createLinkToken = async (user: User) => {
   }
 }
 
+/**
+ * Creates a bank account in the database.
+ * @async
+ * @param {Object} createBankAccountProps - The properties object.
+ * @param {string} createBankAccountProps.userId - The ID of the user.
+ * @param {string} createBankAccountProps.bankId - The ID of the bank.
+ * @param {string} createBankAccountProps.accountId - The ID of the account.
+ * @param {string} createBankAccountProps.accessToken - The access token.
+ * @param {string} createBankAccountProps.fundingSourceUrl - The URL of the funding source.
+ * @param {string} createBankAccountProps.shareableId - The shareable ID.
+ * @returns {Promise<Object>} The created bank account.
+ */
 export const createBankAccount = async ({
   userId,
   bankId,
@@ -183,7 +234,14 @@ export const createBankAccount = async ({
   }
 }
 
-// This function exchanges a public token for an access token and item ID
+/**
+ * Exchanges a public token for an access token and item ID, then creates a bank account.
+ * @async
+ * @param {Object} exchangePublicTokenProps - The properties object.
+ * @param {string} exchangePublicTokenProps.publicToken - The public token to exchange.
+ * @param {Object} exchangePublicTokenProps.user - The user object.
+ * @returns {Promise<Object>} A success message or an error.
+ */
 export const exchangePublicToken = async ({
   publicToken,
   user,
@@ -248,6 +306,13 @@ export const exchangePublicToken = async ({
   }
 };
 
+/**
+ * Retrieves banks associated with a user.
+ * @async
+ * @param {Object} getBanksProps - The properties object.
+ * @param {string} getBanksProps.userId - The ID of the user.
+ * @returns {Promise<Object>} The banks associated with the user.
+ */
 export const getBanks = async ({ userId }: getBanksProps) => {
   try {
     const { database } = await createAdminClient();
@@ -264,6 +329,13 @@ export const getBanks = async ({ userId }: getBanksProps) => {
   }
 };
 
+/**
+ * Retrieves a bank by its document ID.
+ * @async
+ * @param {Object} getBankProps - The properties object.
+ * @param {string} getBankProps.documentId - The ID of the bank document.
+ * @returns {Promise<Object>} The bank document.
+ */
 export const getBank = async ({ documentId }: getBankProps) => {
   try {
     const { database } = await createAdminClient();
@@ -280,6 +352,13 @@ export const getBank = async ({ documentId }: getBankProps) => {
   }
 };
 
+/**
+ * Retrieves a bank by its account ID.
+ * @async
+ * @param {Object} getBankByAccountIdProps - The properties object.
+ * @param {string} getBankByAccountIdProps.accountId - The ID of the bank account.
+ * @returns {Promise<Object|null>} The bank document or null if not found.
+ */
 export const getBankByAccountId = async ({ accountId }: getBankByAccountIdProps) => {
   try {
     const { database } = await createAdminClient();

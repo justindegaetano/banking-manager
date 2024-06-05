@@ -15,7 +15,13 @@ import { parseStringify } from "../utils";
 import { getTransactionsByBankId } from "./transaction.actions";
 import { getBanks, getBank } from "./user.actions";
 
-// Get multiple bank accounts
+/**
+ * Retrieves multiple bank accounts associated with a user.
+ * @async
+ * @param {Object} props - The properties object.
+ * @param {string} props.userId - The ID of the user.
+ * @returns {Promise<string>} A JSON string containing the bank accounts information.
+ */
 export const getAccounts = async ({ userId }: getAccountsProps) => {
   try {
     // get banks from db
@@ -63,7 +69,13 @@ export const getAccounts = async ({ userId }: getAccountsProps) => {
   }
 };
 
-// Get one bank account
+/**
+ * Retrieves a single bank account.
+ * @async
+ * @param {Object} props - The properties object.
+ * @param {string} props.appwriteItemId - The ID of the bank account.
+ * @returns {Promise<string>} A JSON string containing the bank account information and associated transactions.
+ */
 export const getAccount = async ({ appwriteItemId }: getAccountProps) => {
   try {
     // get bank from db
@@ -128,7 +140,13 @@ export const getAccount = async ({ appwriteItemId }: getAccountProps) => {
   }
 };
 
-// Get bank info
+/**
+ * Retrieves information about a financial institution.
+ * @async
+ * @param {Object} props - The properties object.
+ * @param {string} props.institutionId - The ID of the financial institution.
+ * @returns {Promise<string>} A JSON string containing the institution information.
+ */
 export const getInstitution = async ({
   institutionId,
 }: getInstitutionProps) => {
@@ -146,7 +164,13 @@ export const getInstitution = async ({
   }
 };
 
-// Get transactions
+/**
+ * Retrieves transactions associated with an access token.
+ * @async
+ * @param {Object} props - The properties object.
+ * @param {string} props.accessToken - The access token.
+ * @returns {Promise<string>} A JSON string containing the transactions information.
+ */
 export const getTransactions = async ({
   accessToken,
 }: getTransactionsProps) => {
@@ -184,7 +208,11 @@ export const getTransactions = async ({
   }
 };
 
-// Create Transfer
+/**
+ * Creates a transfer.
+ * @async
+ * @returns {Promise<string>} A JSON string containing the created transfer information.
+ */
 export const createTransfer = async () => {
   const transferAuthRequest: TransferAuthorizationCreateRequest = {
     access_token: "access-sandbox-cddd20c1-5ba8-4193-89f9-3a0b91034c25",

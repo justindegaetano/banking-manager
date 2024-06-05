@@ -10,6 +10,14 @@ import {
   getAccountTypeColors,
 } from "@/lib/utils";
 
+/**
+ * Bank information component.
+ * @param {Object} props - The properties object.
+ * @param {Object} props.account - The bank account information.
+ * @param {string} props.appwriteItemId - The ID of the bank account.
+ * @param {string} props.type - The type of the bank account.
+ * @returns {JSX.Element} The bank information component.
+ */
 const BankInfo = ({ account, appwriteItemId, type }: BankInfoProps) => {
   const router = useRouter();
   const searchParams = useSearchParams();
